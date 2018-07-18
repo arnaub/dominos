@@ -1,0 +1,31 @@
+<!-- <app-match-players [players]="match.matchPlayers"></app-match-players> -->
+<ul class="matchHeader">
+  <li class="playerHeader" *ngFor="let player of match.matchPlayers">
+    <!-- <img class="playerAvatar" [src]="player.player.avatar" alt=""> {{player.player.name}} -->
+    <app-player-box [player]="player.player"></app-player-box>
+  </li>
+</ul>
+<ul class="matchScore">
+  <li class="matchScoreItem" *ngFor="let player of match.matchPlayers">
+    <ul class="playerScoreList">
+      <li *ngFor="let score of player.score; let i = index" (click)="editScore(player, score, i)" class="playerScoreItem">
+        {{score}}
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul class="matchActions">
+  <li class="matchActionItem" *ngFor="let player of match.matchPlayers">
+    <p>Total</p>
+    <p class="totalScore">{{totalScore(player.score)}}</p>
+    <button mat-mini-fab (click)="addScore(player)" color="primary">
+      <i class="material-icons">
+        add
+      </i>
+    </button>
+  </li>
+</ul>
+
+<div class="gameOver" *ngIf="match.completed">
+  <button mat-raised-button color="accent" (click)="gameOverDialog()">GAME OVER!</button>
+</div>

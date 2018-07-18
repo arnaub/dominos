@@ -1,0 +1,14 @@
+<h1>Select Players</h1>
+
+<form *ngIf="form$ | async as form" [formGroup]="form">
+  <ul class="playerList">
+    <li class="playerListItem" *ngFor="let control of form.get('players').controls">
+      <ng-container [formGroup]="control">
+        <mat-checkbox class="example-margin" formControlName="selected">
+          <app-player-box [player]="control.value.player"></app-player-box>
+        </mat-checkbox>
+      </ng-container>
+    </li>
+  </ul>
+  <button mat-raised-button (click)="createNewMatch(form)" color="primary">Create</button>
+</form>

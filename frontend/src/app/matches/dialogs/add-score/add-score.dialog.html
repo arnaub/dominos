@@ -1,0 +1,19 @@
+<img class="playerAvatar" [src]="data.avatar" alt="">
+<h1 class="playerName" mat-dialog-title>{{ data.name }}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.score">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()" color="warn">
+    <i class="material-icons">
+      clear
+    </i>
+  </button>
+  <button mat-raised-button [mat-dialog-close]="data.score" color="primary" cdkFocusInitial>
+    <i class="material-icons">
+      done
+    </i>
+  </button>
+</div>
