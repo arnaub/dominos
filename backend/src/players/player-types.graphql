@@ -1,0 +1,8 @@
+# A domino's player
+type Player {
+  id: ID!
+  # The full name of the player
+  name: String!
+  # The url of the avatar
+  avatarUrl: String!
+}

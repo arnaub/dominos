@@ -1,0 +1,11 @@
+type Match {
+  id: ID!
+  matchPlayers: [MatchPlayer!]!
+  completed: Boolean!
+}
+
+type MatchPlayer {
+  id: ID!
+  player: Player!
+  score: [Int!]!
+}
