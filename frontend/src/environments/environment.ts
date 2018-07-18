@@ -7,7 +7,7 @@ export const environment = {
   router: {
     enableTracing: false
   },
-  apiUrl: "http://192.168.1.12:3000/graphql"
+  apiUrl: "http://localhost:3000/graphql"
 };
 
 /*
