@@ -24,7 +24,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material";
 import { HttpClientModule } from "../../node_modules/@angular/common/http";
-import { environment } from "../environments/environment.prod";
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent],
