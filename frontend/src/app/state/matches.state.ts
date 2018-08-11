@@ -14,6 +14,7 @@ export class MatchesStateModel {
     currentMatch: {
       id: "0",
       matchPlayers: [],
+      created_at: new Date(),
       completed: false
     },
     matches: MATCHES

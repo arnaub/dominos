@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MomentModule } from "angular2-moment";
 
 // Apollo
 import { ApolloModule, Apollo } from "apollo-angular";
@@ -26,6 +27,8 @@ import { MatButtonModule } from "@angular/material";
 import { HttpClientModule } from "../../node_modules/@angular/common/http";
 import { environment } from "../environments/environment";
 
+import { MatchesModule } from "./matches/matches.module";
+
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent],
   imports: [
@@ -41,7 +44,9 @@ import { environment } from "../environments/environment";
     NgxsModule.forRoot([MatchesState]),
     NgxsStoragePluginModule,
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot()
+    NgxsLoggerPluginModule.forRoot(),
+    MatchesModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

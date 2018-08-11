@@ -1,0 +1,35 @@
+@import "../../../../styles/colors";
+.matchCard {
+  border: 1px solid $ligthText;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  margin: 20px 0;
+}
+
+.matchDate {
+  font-size: 10px;
+  color: $ligthText;
+  margin: 0;
+  text-align: right;
+}
+
+.playersList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.playerItem {
+  margin: 0;
+  padding: 0;
+}
+
+.playerInfo {
+  padding: 0;
+  margin: 5px 0;
+}
+
+.playerScore {
+  text-align: center;
+}

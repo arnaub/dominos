@@ -7,7 +7,13 @@ import { Player } from "../../models/players.model";
   styleUrls: ["./player-box.component.scss"]
 })
 export class PlayerBoxComponent implements OnInit {
-  @Input() player: Player;
+  @Input()
+  player: Player;
+  @Input()
+  winner: boolean = false;
+  @Input()
+  loser: boolean = false;
+
   constructor() {}
 
   ngOnInit() {}

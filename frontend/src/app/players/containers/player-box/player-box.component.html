@@ -1,2 +1,2 @@
-<img class="playerAvatar" [src]="player.avatarUrl" alt="">
+<img class="playerAvatar" [src]="player.avatarUrl" alt="" [ngClass]="{'winner' : winner, 'loser' : loser}">
 <p>{{player.name}}</p>

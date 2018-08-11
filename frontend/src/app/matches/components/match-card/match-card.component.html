@@ -1,0 +1,11 @@
+<div class="matchCard clearfix">
+  <p class="matchDate">{{match.created_at | amDateFormat: 'DD-MM-YYYY HH:mm'}}</p>
+  <ul class="playersList">
+    <li class="playerItem" *ngFor="let player of match.matchPlayers">
+      <p class="playerInfo">
+        {{player.player.name}}
+        <span class="playerScore">{{totalScore(player.score)}}</span>
+      </p>
+    </li>
+  </ul>
+</div>

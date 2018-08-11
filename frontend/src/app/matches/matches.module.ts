@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { MomentModule } from "angular2-moment";
 
 // Routes
 import { MatchesRoutingModule } from "./matches-routing.module";
@@ -12,6 +13,7 @@ import { ShowMatchComponent } from "./components/show-match/show-match.component
 import { MatchPlayersComponent } from "./components/match-players/match-players.component";
 import { MatchScoreComponent } from "./components/match-score/match-score.component";
 import { NewMatchComponent } from "./components/new-match/new-match.component";
+import { MatchCardComponent } from "./components/match-card/match-card.component";
 
 // Dialogs
 import { AddScoreDialog } from "./dialogs/add-score/add-score.dialog";
@@ -39,7 +41,8 @@ import { PlayersModule } from "../players/players.module";
     MatButtonModule,
     MatCheckboxModule,
     PlayersModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MomentModule
   ],
   declarations: [
     NewMatchComponent,
@@ -48,9 +51,10 @@ import { PlayersModule } from "../players/players.module";
     MatchScoreComponent,
     AddScoreDialog,
     GameOverDialog,
-    NewMatchComponent
+    NewMatchComponent,
+    MatchCardComponent
   ],
-  exports: [],
+  exports: [MatchCardComponent],
   entryComponents: [AddScoreDialog, GameOverDialog],
   providers: [MatchesService]
 })

@@ -1,4 +1,5 @@
-{{(matches$ | async) | json }}
+<!-- {{(matches$ | async) | json }} -->
+<app-match-card *ngFor="let match of matches" [match]="match"></app-match-card>
 <button class="newMatch" mat-fab routerLink="/matches/new-match" color="primary">
   <i class="material-icons">
     add

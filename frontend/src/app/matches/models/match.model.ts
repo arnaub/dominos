@@ -4,6 +4,7 @@ export class Match {
   id: string;
   matchPlayers: MatchPlayer[];
   completed: boolean;
+  created_at: Date;
 }
 
 export class MatchPlayer {
