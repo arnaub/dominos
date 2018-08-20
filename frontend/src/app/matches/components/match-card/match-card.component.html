@@ -1,11 +1,44 @@
-<div class="matchCard clearfix">
-  <p class="matchDate">{{match.created_at | amDateFormat: 'DD-MM-YYYY HH:mm'}}</p>
-  <ul class="playersList">
-    <li class="playerItem" *ngFor="let player of match.matchPlayers">
-      <p class="playerInfo">
-        {{player.player.name}}
-        <span class="playerScore">{{totalScore(player.score)}}</span>
-      </p>
-    </li>
-  </ul>
-</div>
+<mat-card class="matchCard">
+  <mat-card-header>
+    <mat-card-subtitle class="matchDate">{{match.created_at | amDateFormat: 'DD-MM-YYYY HH:mm'}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="avatar">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row">
+          <img [src]="row.player.avatarUrl" alt="" class="tableAvatar" [ngStyle]="{'background' : row.player.color}"> </td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Player </th>
+        <td mat-cell *matCellDef="let row"> {{row.player.name}} </td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
+        <td mat-cell *matCellDef="let row"> {{totalScore(row.score) }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
+        <td mat-cell *matCellDef="let row">
+          <img class="positionIcon" *ngIf="isWinner(row.player)" src="assets/images/winner.svg" alt="">
+          <img class="positionIcon" *ngIf="isLoser(row.player)" src="assets/images/loser.svg" alt="">
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

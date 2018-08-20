@@ -26,6 +26,9 @@ export class MatchesService {
         );
         player = (player + 1) % PLAYERS.length;
       }
+      match.winners = this.winners(match).map(m => m.id);
+      match.losers = this.losers(match).map(m => m.id);
+      match.beers = this.beers(match);
       matches = [...matches, match];
     }
     return matches;

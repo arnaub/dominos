@@ -5,6 +5,9 @@ export class Match {
   matchPlayers: MatchPlayer[];
   completed: boolean;
   created_at: Date;
+  winners?: string[];
+  losers?: string[];
+  beers?: number;
 }
 
 export class MatchPlayer {

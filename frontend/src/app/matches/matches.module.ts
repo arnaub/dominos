@@ -24,7 +24,10 @@ import {
   MatDialogModule,
   MatInputModule,
   MatButtonModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatCardModule,
+  MatSortModule,
+  MatTableModule
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -39,6 +42,9 @@ import { PlayersModule } from "../players/players.module";
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
+    MatCardModule,
+    MatSortModule,
+    MatTableModule,
     MatCheckboxModule,
     PlayersModule,
     ReactiveFormsModule,

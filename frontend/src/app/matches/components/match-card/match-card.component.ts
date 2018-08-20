@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Match } from "../../models/match.model";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Match, MatchPlayer } from "../../models/match.model";
 import { MatchesService } from "../../services/matches.service";
+import { MatSort, MatTableDataSource } from "@angular/material";
 
 @Component({
   selector: "app-match-card",
@@ -10,13 +11,31 @@ import { MatchesService } from "../../services/matches.service";
 export class MatchCardComponent implements OnInit {
   @Input()
   match: Match;
+
+  displayedColumns: string[] = ["avatar", "name", "score", "position"];
+  dataSource: MatTableDataSource<MatchPlayer>;
+
+  @ViewChild(MatSort)
+  sort: MatSort;
+
   constructor(private matchesService: MatchesService) {}
 
   ngOnInit() {
-    console.log(this.match);
+    this.dataSource = new MatTableDataSource(this.match.matchPlayers);
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case "name":
+          return item.player.name;
+        case "score":
+          return this.totalScore(item.score);
+        default:
+          return item[property];
+      }
+    };
+    this.dataSource.sort = this.sort;
   }
 
-  totalScore(score): Number {
+  totalScore(score: Number[]): Number {
     return this.matchesService.totalScore(score);
   }
 

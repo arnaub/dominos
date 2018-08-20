@@ -1,10 +1,7 @@
 @import "../../../../styles/colors";
+
 .matchCard {
-  border: 1px solid $ligthText;
-  border-radius: 10px;
-  box-sizing: border-box;
-  padding: 10px 20px;
-  margin: 20px 0;
+  margin-bottom: 30px;
 }
 
 .matchDate {
@@ -14,22 +11,36 @@
   text-align: right;
 }
 
-.playersList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.tableAvatar {
+  width: 100%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 10px 0;
+  background: $menda;
+  box-sizing: border-box;
+  padding: 2px;
 }
 
-.playerItem {
-  margin: 0;
-  padding: 0;
+.positionIcon {
+  width: 30px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
 }
 
-.playerInfo {
-  padding: 0;
-  margin: 5px 0;
+table {
+  width: 100%;
 }
 
-.playerScore {
-  text-align: center;
+td.mat-cell:first-child,
+td.mat-footer-cell:first-child,
+th.mat-header-cell:first-child {
+  padding-left: 0;
+}
+
+td.mat-cell:last-child,
+td.mat-footer-cell:last-child,
+th.mat-header-cell:last-child {
+  padding-right: 0;
 }
