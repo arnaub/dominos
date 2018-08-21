@@ -36,7 +36,7 @@ export class MatchesService {
 
   initMatch(players: Player[]): Match {
     return {
-      id: "1",
+      id: "0",
       matchPlayers: this.loadPlayers(players),
       created_at: new Date(),
       completed: false

@@ -11,6 +11,21 @@
   text-align: right;
 }
 
+.beers {
+  position: absolute;
+  display: block;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: $highLight;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+}
+
 .tableAvatar {
   width: 100%;
   width: 40px;

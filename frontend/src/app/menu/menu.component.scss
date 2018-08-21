@@ -1,0 +1,16 @@
+@import "../../styles/colors";
+
+.mainButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.homeButton {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  color: $ligthText;
+  transform: translateY(-50%);
+}

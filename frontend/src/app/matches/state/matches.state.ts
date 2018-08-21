@@ -1,7 +1,12 @@
 import { State, Action, StateContext, Selector } from "@ngxs/store";
-import { Match } from "../matches/models/match.model";
-import { UpdateCurrentMatch, AddMatch } from "./../actions/matches.actions";
-import { MATCHES } from "../matches/models/mock-matches";
+import { Match, MatchPlayer } from "../models/match.model";
+import {
+  UpdateCurrentMatch,
+  AddMatch,
+  AddScoreToPlayer
+} from "./matches.actions";
+import { MATCHES } from "../models/mock-matches";
+import { state } from "@angular/animations";
 
 export class MatchesStateModel {
   currentMatch: Match;
@@ -17,7 +22,7 @@ export class MatchesStateModel {
       created_at: new Date(),
       completed: false
     },
-    matches: MATCHES
+    matches: []
   }
 })
 export class MatchesState {
@@ -41,6 +46,7 @@ export class MatchesState {
       matches: [...state.matches, payload]
     });
   }
+
   @Action(UpdateCurrentMatch)
   update(
     { getState, patchState }: StateContext<MatchesStateModel>,

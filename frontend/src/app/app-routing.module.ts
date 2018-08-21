@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
+import { HomeComponent } from "./home/components/home/home.component";
 import { environment } from "../environments/environment";
 import { NotFoundComponent } from "./not-found/not-found.component";
 
 const routes: Routes = [
   {
     path: "",
-    component: HomeComponent
+    loadChildren: "./home/home.module#HomeModule"
   },
   {
     path: "matches",

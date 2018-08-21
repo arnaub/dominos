@@ -1,0 +1,3 @@
+<div *ngIf="matches$ | async as matches">
+  <app-match-card *ngFor="let match of sort(matches)" [match]="match"></app-match-card>
+</div>

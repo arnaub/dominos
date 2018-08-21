@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 // Store
-import { Store } from "@ngxs/store";
-import { UpdateCurrentMatch, AddMatch } from "../../../actions/matches.actions";
+import { Store, Select } from "@ngxs/store";
+import { UpdateCurrentMatch, AddMatch } from "../../state/matches.actions";
+import { MatchesState } from "../../state/matches.state";
 
 // Services
 import { MatchesService } from "../../services/matches.service";
@@ -24,9 +27,13 @@ import { GameOverDialog } from "../../dialogs/game-over/game-over.dialog";
   styleUrls: ["./show-match.component.scss"]
 })
 export class ShowMatchComponent implements OnInit {
-  match: Match;
   activePlayer: MatchPlayer;
   activeScore: number;
+
+  @Select(MatchesState.getCurrentMatch)
+  match$: Observable<Match>;
+
+  match: Match;
 
   constructor(
     public dialog: MatDialog,
@@ -36,23 +43,18 @@ export class ShowMatchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let players: Player[] = PLAYERS;
-    this.loadMatch(players);
-    this.updateCurrentMatchState();
+    this.match$.subscribe(match => (this.match = match));
   }
 
   updateCurrentMatchState() {
     this.store.dispatch(new UpdateCurrentMatch(this.match));
   }
 
-  loadMatch(players) {
-    this.match = this.matchesService.initMatch(players);
-  }
-
   addPlayerScore(player: MatchPlayer, score: number) {
     this.match.matchPlayers
       .filter(x => x.id === player.id)
       .map(x => (x.score = [...x.score, score]));
+
     this.gameOver(player);
     this.updateCurrentMatchState();
   }
@@ -98,7 +100,7 @@ export class ShowMatchComponent implements OnInit {
   }
 
   totalScore(score) {
-    return score.reduce((total, value) => total + parseInt(value), 0);
+    return this.matchesService.totalScore(score);
   }
 
   gameOver(player: MatchPlayer) {
@@ -119,12 +121,18 @@ export class ShowMatchComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       switch (result) {
         case "rematch":
+          this.match.beers = this.beers();
           this.store.dispatch(new AddMatch(this.match));
-          const players = PLAYERS;
-          this.loadMatch(players);
+          this.store.dispatch(
+            new UpdateCurrentMatch(
+              this.matchesService.initMatch(
+                this.match.matchPlayers.map(matchPlayer => matchPlayer.player)
+              )
+            )
+          );
           break;
         case "config":
-          this.router.navigateByUrl("");
+          this.router.navigateByUrl("matches/new-match");
           break;
       }
     });
