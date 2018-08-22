@@ -3,5 +3,8 @@ query GetPlayers {
     id
     avatarUrl
     name
+    color
+    wins
+    loses
   }
 }

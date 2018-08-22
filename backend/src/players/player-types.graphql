@@ -5,4 +5,10 @@ type Player {
   name: String!
   # The url of the avatar
   avatarUrl: String!
+  # The color of the player
+  color: String!
+  # Number of victories
+  wins: Int
+  # Number of loses
+  loses: Int
 }

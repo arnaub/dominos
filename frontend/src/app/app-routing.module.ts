@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { HomeComponent } from "./home/components/home/home.component";
 import { environment } from "../environments/environment";
 import { NotFoundComponent } from "./not-found/not-found.component";
 
@@ -12,6 +11,10 @@ const routes: Routes = [
   {
     path: "matches",
     loadChildren: "./matches/matches.module#MatchesModule"
+  },
+  {
+    path: "players",
+    loadChildren: "./players/players.module#PlayersModule"
   },
   {
     path: "**",

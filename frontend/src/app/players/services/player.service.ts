@@ -15,11 +15,10 @@ export class PlayerService {
   constructor(private apollo: Apollo) {}
 
   getPlayers(): Observable<Player[]> {
-    return of(PLAYERS);
-    // return this.apollo
-    //   .query<any>({
-    //     query: GetPlayers
-    //   })
-    //   .pipe(map(({ data }) => data.players));
+    return this.apollo
+      .query<any>({
+        query: GetPlayers
+      })
+      .pipe(map(({ data }) => data.players));
   }
 }

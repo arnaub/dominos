@@ -2,18 +2,17 @@ import { Component, OnInit } from "@angular/core";
 import { Player } from "../../../players/models/players.model";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { PlayersState } from "../../../players/state/players.state";
 import { FormGroup, FormBuilder } from "@angular/forms";
-import { LoadPlayers } from "../../../players/state/players.action";
-import { MatchesService } from "../../services/matches.service";
+import { Router } from "@angular/router";
 
 // Store
 import { Select, Store } from "@ngxs/store";
+import { PlayersState } from "../../../players/state/players.state";
+import { LoadPlayers } from "../../../players/state/players.action";
 import { UpdateCurrentMatch } from "../../state/matches.actions";
-import { MatchesState } from "../../state/matches.state";
-import { Match } from "../../models/match.model";
-import { Router } from "@angular/router";
 
+// Services
+import { MatchesService } from "../../services/matches.service";
 @Component({
   selector: "app-new-match",
   templateUrl: "./new-match.component.html",

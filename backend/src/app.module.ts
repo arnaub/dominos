@@ -3,11 +3,27 @@ import { graphqlExpress } from 'apollo-server-express';
 import { GraphQLModule, GraphQLFactory } from '@nestjs/graphql';
 import { AppController } from 'app.controller';
 import { AppService } from 'app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { PlayersModule } from 'players/players.module';
 import { MatchesModule } from 'matches/matches.module';
 
 @Module({
-  imports: [GraphQLModule, PlayersModule, MatchesModule],
+  imports: [
+    GraphQLModule,
+    PlayersModule,
+    MatchesModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'arnau',
+      password: '',
+      database: 'dominos_development',
+      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      synchronize: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

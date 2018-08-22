@@ -1,7 +1,8 @@
 type Match {
   id: ID!
-  matchPlayers: [MatchPlayer!]!
+  # matchPlayers: [MatchPlayer!]!
   completed: Boolean!
+  created_at: String!
 }
 
 type MatchPlayer {
