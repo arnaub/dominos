@@ -1,0 +1,3 @@
+<div *ngIf="players$ | async as players">
+  <p *ngFor="let player of players">{{player.name}}</p>
+</div>
