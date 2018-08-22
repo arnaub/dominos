@@ -2,7 +2,7 @@
 <div *ngIf="match">
   <ul class="matchHeader">
     <li class="playerHeader" *ngFor="let player of match.matchPlayers">
-      <app-player-box [player]="player.player"></app-player-box>
+      <app-player-box [player]="player.player" (click)="addScore(player)"></app-player-box>
     </li>
   </ul>
   <ul class="matchScore">
@@ -18,11 +18,6 @@
     <li class="matchActionItem" *ngFor="let player of match.matchPlayers">
       <p>Total</p>
       <p class="totalScore">{{totalScore(player.score)}}</p>
-      <button mat-mini-fab (click)="addScore(player)" color="primary">
-        <i class="material-icons">
-          add
-        </i>
-      </button>
     </li>
   </ul>
 

@@ -72,13 +72,13 @@ export class ShowMatchComponent implements OnInit {
     const dialogRef = this.dialog.open(AddScoreDialog, {
       data: {
         name: player.player.name,
-        score: 0,
+        score: null,
         avatar: player.player.avatarUrl
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result > -1) {
+      if (result && result > -1) {
         this.addPlayerScore(player, result);
       }
     });
@@ -93,7 +93,7 @@ export class ShowMatchComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result > -1) {
+      if (result && result > -1) {
         this.editPlayerScore(player, result, index);
       }
     });
@@ -120,22 +120,17 @@ export class ShowMatchComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       switch (result) {
-        case "rematch":
-          this.match.beers = this.beers();
-          this.store.dispatch(new AddMatch(this.match));
-          this.store.dispatch(
-            new UpdateCurrentMatch(
-              this.matchesService.initMatch(
-                this.match.matchPlayers.map(matchPlayer => matchPlayer.player)
-              )
-            )
-          );
-          break;
-        case "config":
+        case "endGame":
+          this.submitMatch();
           this.router.navigateByUrl("matches/new-match");
           break;
       }
     });
+  }
+
+  submitMatch() {
+    this.match.beers = this.beers();
+    this.store.dispatch(new AddMatch(this.match));
   }
 
   winners() {

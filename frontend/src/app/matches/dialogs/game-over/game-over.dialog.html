@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <ul class="losers">
     <li *ngFor="let loser of data.losers">
-      <img class="avatar" [src]="loser.avatar">
+      <img class="avatar" [src]="loser.avatarUrl" [ngStyle]="{'background' : loser.color}">
       <p>{{loser.name}}</p>
     </li>
   </ul>
@@ -12,21 +12,16 @@
   </p>
   <ul class="winners">
     <li *ngFor="let winner of data.winners">
-      <img class="avatar" [src]="winner.avatar">
+      <img class="avatar" [src]="winner.avatarUrl" [ngStyle]="{'background' : winner.color}">
       <p>{{winner.name}}</p>
     </li>
   </ul>
 </div>
 <div mat-dialog-actions>
-  <button class="back" mat-raised-button (click)="onNoClick()" color="warn">
-    <i class="material-icons">
-      clear
-    </i>
+  <button mat-raised-button (click)="onNoClick()" color="warn">
+    Cancel
   </button>
-  <button mat-raised-button mat-dialog-close="rematch" color="primary" cdkFocusInitial>
-    Rematch
-  </button>
-  <button mat-raised-button mat-dialog-close="config" color="primary" cdkFocusInitial>
-    New config
+  <button mat-raised-button mat-dialog-close="endGame" color="primary" cdkFocusInitial>
+    End Game
   </button>
 </div>
