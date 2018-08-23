@@ -12,3 +12,9 @@ type Player {
   # Number of loses
   loses: Int
 }
+
+input PlayerToCreate {
+  name: String!
+  avatarUrl: String!
+  color: String!
+}

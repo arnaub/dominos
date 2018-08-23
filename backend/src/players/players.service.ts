@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Player } from './player.model';
+import * as PlayerEntity from './player.entity';
+import * as MatchPlayerEntity from 'matches/match-player.entity';
 
 const PLAYERS: Player[] = [
   {
@@ -42,7 +44,20 @@ const PLAYERS: Player[] = [
 
 @Injectable()
 export class PlayersService {
-  findAll(): Player[] {
-    return PLAYERS;
+  findAll(): Promise<PlayerEntity.Player[]> {
+    return PlayerEntity.Player.find({ relations: ['matchPlayers'] });
+  }
+
+  async create(playerDto: Player): Promise<PlayerEntity.Player> {
+    const player = new PlayerEntity.Player();
+    player.name = playerDto.name;
+    player.avatarUrl = playerDto.avatarUrl;
+    player.color = playerDto.color;
+    return await player.save();
+  }
+
+  async wins(player: PlayerEntity.Player): Promise<number> {
+    return player.matchPlayers.filter(match => match.position === 'winner')
+      .length;
   }
 }

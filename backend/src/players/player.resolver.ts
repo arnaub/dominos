@@ -1,4 +1,4 @@
-import { Resolver, Query } from '@nestjs/graphql';
+import { Resolver, Query, Mutation } from '@nestjs/graphql';
 import { PlayersService } from './players.service';
 
 @Resolver('Player')
@@ -7,6 +7,22 @@ export class PlayerResolver {
 
   @Query('players')
   async getPlayers(obj, args, context, info) {
-    return await this.playersService.findAll();
+    const players = await this.playersService.findAll();
+    return players.reduce((list, player) => {
+      return [
+        ...list,
+        {
+          ...player,
+          wins: this.playersService.wins(player),
+          loses: player.matchPlayers.length,
+        },
+      ];
+    }, []);
+  }
+
+  @Mutation()
+  async createPlayer(obj, args, context, info) {
+    const { player } = args;
+    return await this.playersService.create(player);
   }
 }

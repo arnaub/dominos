@@ -5,8 +5,16 @@ type Match {
   created_at: String!
 }
 
-type MatchPlayer {
-  id: ID!
-  player: Player!
-  score: [Int!]!
+input MatchPlayerToCreate {
+  playerId: ID!
+  score: Int!
+}
+
+input MatchToCreate {
+  completed: Boolean!
+  created_at: String!
+  matchPlayers: [MatchPlayerToCreate!]!
+  winners: [String!]!
+  losers: [String!]!
+  beers: Int!
 }

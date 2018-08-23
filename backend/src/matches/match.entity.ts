@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  OneToMany,
+} from 'typeorm';
+
+import { MatchPlayer } from './match-player.entity';
 
 @Entity()
 export class Match extends BaseEntity {
@@ -7,4 +15,7 @@ export class Match extends BaseEntity {
   @Column('date') created_at: Date;
 
   @Column() completed: boolean;
+
+  @OneToMany(type => MatchPlayer, matchPlayer => matchPlayer.match)
+  matchPlayers: MatchPlayer[];
 }

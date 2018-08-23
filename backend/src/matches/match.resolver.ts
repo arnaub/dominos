@@ -12,9 +12,9 @@ export class MatchResolver {
     return await this.matchesService.findAll();
   }
 
-  // @Query('createMatch')
-  // async createMatch(obj, args, context, info): Promise<MatchEntity.Match> {
-  //   const { match } = args;
-  //   return await this.matchesService.create(match);
-  // }
+  @Mutation('createMatch')
+  async createMatch(obj, args, context, info): Promise<MatchEntity.Match> {
+    const { match } = args;
+    return await this.matchesService.create(match);
+  }
 }
