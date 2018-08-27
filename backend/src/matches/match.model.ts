@@ -11,7 +11,6 @@ export interface Match {
 }
 
 export class MatchPlayer {
-  id: string;
-  player: Player;
-  score: number[];
+  playerId: string;
+  score: number;
 }

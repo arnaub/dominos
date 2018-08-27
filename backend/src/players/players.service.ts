@@ -44,8 +44,8 @@ const PLAYERS: Player[] = [
 
 @Injectable()
 export class PlayersService {
-  findAll(): Promise<PlayerEntity.Player[]> {
-    return PlayerEntity.Player.find({ relations: ['matchPlayers'] });
+  async findAll(): Promise<PlayerEntity.Player[]> {
+    return await PlayerEntity.Player.find({ relations: ['matchPlayers'] });
   }
 
   async create(playerDto: Player): Promise<PlayerEntity.Player> {
